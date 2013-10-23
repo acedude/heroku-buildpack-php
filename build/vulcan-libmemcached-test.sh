@@ -83,7 +83,9 @@ cd /tmp/memcached-2.1.0
   --with-php-config=/app/php/bin/php-config \
   --enable-static
 ${MAKE} && ${MAKE} install
+echo "config.log start"
 cat config.log
+echo "config.log end"
 
 # cd /tmp/zip-1.10.2
 # /app/php/bin/phpize
