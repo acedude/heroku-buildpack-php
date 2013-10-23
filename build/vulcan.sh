@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "hi!"
 set -e
 
 mkdir /app/local
