@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "hi!"
 set -e
 
 mkdir /app/local
@@ -27,7 +26,7 @@ cp -a /tmp/usr/lib/* /app/local/lib
 export APACHE_MIRROR_HOST="http://apache.mirrors.tds.net"
 
 # curl -L ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz -o /tmp/libmcrypt-2.5.7.tar.gz
-curl -L ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/cyrus-sasl-2.1.25.tar.gz -o /tmp/cyrus-sasl-2.1.25.tar.gz
+# curl -L ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/cyrus-sasl-2.1.25.tar.gz -o /tmp/cyrus-sasl-2.1.25.tar.gz
 echo "downloading libmemcached"
 curl -L https://launchpad.net/libmemcached/1.0/1.0.16/+download/libmemcached-1.0.16.tar.gz -o /tmp/libmemcached-1.0.16.tar.gz
 echo "downloading PCRE"
@@ -48,7 +47,7 @@ curl -L http://zlib.net/zlib-1.2.8.tar.gz -o /tmp/zlib-1.2.8.tar.gz
 # curl -L http://pecl.php.net/get/zip-1.10.2.tgz -o /tmp/zip-1.10.2.tgz
 
 # tar -C /tmp -xzf /tmp/libmcrypt-2.5.7.tar.gz
-tar -C /tmp -xzf /tmp/cyrus-sasl-2.1.25.tar.gz
+# tar -C /tmp -xzf /tmp/cyrus-sasl-2.1.25.tar.gz
 tar -C /tmp -xzf /tmp/libmemcached-1.0.16.tar.gz
 tar -C /tmp -xzf /tmp/pcre-8.32.tar.gz
 tar -C /tmp -xzf /tmp/httpd-2.4.6.tar.gz
@@ -96,25 +95,24 @@ sed -e "s%/usr/local/apache2%/app/apache%" Makefile.AP2 > Makefile
 ${MAKE} && ${MAKE} install
 
 cd /tmp/php-5.5.5
-./configure --prefix=/app/php --with-pdo-pgsql --with-pgsql --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv --with-gd --with-curl=/usr/lib --with-config-file-path=/app/php --enable-soap=shared --with-openssl --enable-mbstring --with-mhash --enable-mysqlnd --with-pear --with-mysqli=mysqlnd --with-jpeg-dir --with-png-dir --with-mcrypt=/app/local --enable-static --enable-fpm --with-pcre-dir=/app/local --disable-cgi --enable-zip --enable-memcached-sasl
+./configure --prefix=/app/php --with-pdo-pgsql --with-pgsql --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv --with-gd --with-curl=/usr/lib --with-config-file-path=/app/php --enable-soap=shared --with-openssl --enable-mbstring --with-mhash --enable-mysqlnd --with-pear --with-mysqli=mysqlnd --with-jpeg-dir --with-png-dir --with-mcrypt=/app/local --enable-static --enable-fpm --with-pcre-dir=/app/local --disable-cgi --enable-zip
 ${MAKE}
 ${MAKE} install
 
 /app/php/bin/pear config-set php_dir /app/php
 echo " " | /app/php/bin/pecl install memcache
-#echo " " | /app/php/bin/pecl install memcached
 echo " " | /app/php/bin/pecl install apc-3.1.13
 /app/php/bin/pecl install igbinary
 
-cd /tmp/cyrus-sasl-2.1.25
-./configure --prefix=/app/local
-${MAKE} && ${MAKE} install
-export SASL_PATH=/app/local/lib/sasl2
+# cd /tmp/cyrus-sasl-2.1.25
+# ./configure --prefix=/app/local
+# ${MAKE} && ${MAKE} install
+# export SASL_PATH=/app/local/lib/sasl2
 
 cd /tmp/libmemcached-1.0.16
-./configure --prefix=/app/local --enable-sasl --disable-sasl=off --enable_sasl
+./configure --prefix=/app/local
 # the configure script detects sasl, but is still foobar'ed
-#sed -i 's/LIBMEMCACHED_WITH_SASL_SUPPORT 0/LIBMEMCACHED_WITH_SASL_SUPPORT 1/' Makefile
+# sed -i 's/LIBMEMCACHED_WITH_SASL_SUPPORT 0/LIBMEMCACHED_WITH_SASL_SUPPORT 1/' Makefile
 ${MAKE} && ${MAKE} install
 
 cd /tmp/memcached-2.1.0
@@ -123,7 +121,6 @@ cd /tmp/memcached-2.1.0
   --prefix=/app/php \
   --enable-memcached-igbinary \
   --enable-memcached-json \
-  --enable-memcached-sasl \
   --with-php-config=/app/php/bin/php-config \
   --enable-static
 ${MAKE} && ${MAKE} install
@@ -146,9 +143,9 @@ cp -a /app/php /tmp/build/
 cp -aL /app/local/lib/libmcrypt.so.4 /tmp/build/local/lib/
 cp -aL /app/local/lib/libmemcached.so.11 /tmp/build/local/lib/
 cp -aL /app/local/lib/libpcre.so.1 /tmp/build/local/lib/
-cp -aL /app/local/lib/libmemcachedprotocol.so.0 /tmp/build/local/lib/
-cp -aL /app/local/lib/libmemcachedutil.so.2 /tmp/build/local/lib/
-cp -aL /app/local/lib/sasl2/*.so.2 /tmp/build/local/lib/sasl2/
+# cp -aL /app/local/lib/libmemcachedprotocol.so.0 /tmp/build/local/lib/
+# cp -aL /app/local/lib/libmemcachedutil.so.2 /tmp/build/local/lib/
+# cp -aL /app/local/lib/sasl2/*.so.2 /tmp/build/local/lib/sasl2/
 
 rm -rf /tmp/build/apache/manual/
 
