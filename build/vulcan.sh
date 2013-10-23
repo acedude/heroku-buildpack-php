@@ -96,13 +96,13 @@ sed -e "s%/usr/local/apache2%/app/apache%" Makefile.AP2 > Makefile
 ${MAKE} && ${MAKE} install
 
 cd /tmp/php-5.5.5
-./configure --prefix=/app/php --with-pdo-pgsql --with-pgsql --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv --with-gd --with-curl=/usr/lib --with-config-file-path=/app/php --enable-soap=shared --with-openssl --enable-mbstring --with-mhash --enable-mysqlnd --with-pear --with-mysqli=mysqlnd --with-jpeg-dir --with-png-dir --with-mcrypt=/app/local --enable-static --enable-fpm --with-pcre-dir=/app/local --disable-cgi --enable-zip
+./configure --prefix=/app/php --with-pdo-pgsql --with-pgsql --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv --with-gd --with-curl=/usr/lib --with-config-file-path=/app/php --enable-soap=shared --with-openssl --enable-mbstring --with-mhash --enable-mysqlnd --with-pear --with-mysqli=mysqlnd --with-jpeg-dir --with-png-dir --with-mcrypt=/app/local --enable-static --enable-fpm --with-pcre-dir=/app/local --disable-cgi --enable-zip --enable-memcached-sasl
 ${MAKE}
 ${MAKE} install
 
 /app/php/bin/pear config-set php_dir /app/php
 echo " " | /app/php/bin/pecl install memcache
-echo " " | /app/php/bin/pecl install memcached
+#echo " " | /app/php/bin/pecl install memcached
 echo " " | /app/php/bin/pecl install apc-3.1.13
 /app/php/bin/pecl install igbinary
 
@@ -112,7 +112,7 @@ ${MAKE} && ${MAKE} install
 export SASL_PATH=/app/local/lib/sasl2
 
 cd /tmp/libmemcached-1.0.16
-./configure --prefix=/app/local --enable-sasl
+./configure --prefix=/app/local --enable-sasl --disable-sasl=off --enable_sasl
 # the configure script detects sasl, but is still foobar'ed
 #sed -i 's/LIBMEMCACHED_WITH_SASL_SUPPORT 0/LIBMEMCACHED_WITH_SASL_SUPPORT 1/' Makefile
 ${MAKE} && ${MAKE} install
