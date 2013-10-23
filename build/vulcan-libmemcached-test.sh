@@ -68,7 +68,7 @@ ${MAKE} && ${MAKE} install
 export SASL_PATH=/app/local/lib/sasl2
 
 cd /tmp/libmemcached-1.0.16
-./configure --prefix=/app/local --enable-sasl --enable_sasl
+./configure --prefix=/app/local --enable-sasl
 # the configure script detects sasl, but is still foobar'ed
 #sed -i 's/LIBMEMCACHED_WITH_SASL_SUPPORT 0/LIBMEMCACHED_WITH_SASL_SUPPORT 1/' Makefile
 ${MAKE} && ${MAKE} install
