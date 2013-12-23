@@ -5,7 +5,7 @@ This is a build pack bundling PHP and Apache for Heroku apps.
 
 **Features:**
 * PHP 5.5.7 (PHP-FPM)
-* Apache HTTP Server 2.4.6
+* Apache HTTP Server 2.4.7
 * Composer Support
 * Opcache Enabled
 * PECL Memcached
