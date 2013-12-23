@@ -49,18 +49,26 @@ curl -L http://zlib.net/zlib-1.2.8.tar.gz -o /tmp/zlib-1.2.8.tar.gz
 # tar -C /tmp -xzf /tmp/libmcrypt-2.5.7.tar.gz
 # tar -C /tmp -xzf /tmp/cyrus-sasl-2.1.25.tar.gz
 tar -C /tmp -xzf /tmp/libmemcached-1.0.16.tar.gz
+echo "1"
 tar -C /tmp -xzf /tmp/pcre-8.32.tar.gz
+echo "1"
 tar -C /tmp -xzf /tmp/httpd-2.4.7.tar.gz
+echo "1"
 
 tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-1.4.6.tar.gz
+echo "1"
 mv /tmp/httpd-2.4.7/srclib/apr-1.4.6 /tmp/httpd-2.4.7/srclib/apr
 
 tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-util-1.5.2.tar.gz
+echo "1"
 mv /tmp/httpd-2.4.7/srclib/apr-util-1.5.2 /tmp/httpd-2.4.7/srclib/apr-util
 
 tar -C /tmp -xzf /tmp/php-5.5.7.tar.gz
+echo "1"
 tar -C /tmp -xzf /tmp/memcached-2.1.0.tgz
+echo "1"
 tar -C /tmp -xzf /tmp/zlib-1.2.8.tar.gz
+echo "1"
 # tar -C /tmp -xzf /tmp/zip-1.10.2.tgz
 
 export CFLAGS='-g0 -O2 -s -m64 -march=core2 -mtune=generic -pipe '
