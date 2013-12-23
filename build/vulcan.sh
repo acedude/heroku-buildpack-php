@@ -32,9 +32,9 @@ curl -L https://launchpad.net/libmemcached/1.0/1.0.16/+download/libmemcached-1.0
 echo "downloading PCRE"
 curl -L ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.32.tar.gz -o /tmp/pcre-8.32.tar.gz
 echo "downloading apr"
-curl -L ${APACHE_MIRROR_HOST}/apr/apr-1.4.6.tar.gz -o /tmp/apr-1.4.6.tar.gz
+curl -L ${APACHE_MIRROR_HOST}/apr/apr-1.5.0.tar.gz -o /tmp/apr-1.5.0.tar.gz
 echo "downloading apr-util"
-curl -L ${APACHE_MIRROR_HOST}/apr/apr-util-1.5.2.tar.gz -o /tmp/apr-util-1.5.2.tar.gz
+curl -L ${APACHE_MIRROR_HOST}/apr/apr-util-1.5.3.tar.gz -o /tmp/apr-util-1.5.3.tar.gz
 echo "downloading httpd"
 curl -L ${APACHE_MIRROR_HOST}/httpd/httpd-2.4.7.tar.gz -o /tmp/httpd-2.4.7.tar.gz
 echo "downloading php"
@@ -55,13 +55,13 @@ echo "1"
 tar -C /tmp -xzf /tmp/httpd-2.4.7.tar.gz
 echo "1"
 
-tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-1.4.6.tar.gz
+tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-1.5.0.tar.gz
 echo "1"
-mv /tmp/httpd-2.4.7/srclib/apr-1.4.6 /tmp/httpd-2.4.7/srclib/apr
+mv /tmp/httpd-2.4.7/srclib/apr-1.5.0 /tmp/httpd-2.4.7/srclib/apr
 
-tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-util-1.5.2.tar.gz
+tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-util-1.5.3.tar.gz
 echo "1"
-mv /tmp/httpd-2.4.7/srclib/apr-util-1.5.2 /tmp/httpd-2.4.7/srclib/apr-util
+mv /tmp/httpd-2.4.7/srclib/apr-util-1.5.3 /tmp/httpd-2.4.7/srclib/apr-util
 
 tar -C /tmp -xzf /tmp/php-5.5.7.tar.gz
 echo "1"
