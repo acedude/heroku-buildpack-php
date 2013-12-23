@@ -36,7 +36,7 @@ curl -L ${APACHE_MIRROR_HOST}/apr/apr-1.4.6.tar.gz -o /tmp/apr-1.4.6.tar.gz
 echo "downloading apr-util"
 curl -L ${APACHE_MIRROR_HOST}/apr/apr-util-1.5.2.tar.gz -o /tmp/apr-util-1.5.2.tar.gz
 echo "downloading httpd"
-curl -L ${APACHE_MIRROR_HOST}/httpd/httpd-2.4.7.tar.gz -o /tmp/httpd-2.4.6.tar.gz
+curl -L ${APACHE_MIRROR_HOST}/httpd/httpd-2.4.7.tar.gz -o /tmp/httpd-2.4.7.tar.gz
 echo "downloading php"
 curl -L http://us.php.net/get/php-5.5.7.tar.gz/from/us2.php.net/mirror -o /tmp/php-5.5.7.tar.gz
 echo "downloading pecl-memcached"
@@ -50,13 +50,13 @@ curl -L http://zlib.net/zlib-1.2.8.tar.gz -o /tmp/zlib-1.2.8.tar.gz
 # tar -C /tmp -xzf /tmp/cyrus-sasl-2.1.25.tar.gz
 tar -C /tmp -xzf /tmp/libmemcached-1.0.16.tar.gz
 tar -C /tmp -xzf /tmp/pcre-8.32.tar.gz
-tar -C /tmp -xzf /tmp/httpd-2.4.6.tar.gz
+tar -C /tmp -xzf /tmp/httpd-2.4.7.tar.gz
 
-tar -C /tmp/httpd-2.4.6/srclib -xzf /tmp/apr-1.4.6.tar.gz
-mv /tmp/httpd-2.4.6/srclib/apr-1.4.6 /tmp/httpd-2.4.6/srclib/apr
+tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-1.4.6.tar.gz
+mv /tmp/httpd-2.4.7/srclib/apr-1.4.6 /tmp/httpd-2.4.7/srclib/apr
 
-tar -C /tmp/httpd-2.4.6/srclib -xzf /tmp/apr-util-1.5.2.tar.gz
-mv /tmp/httpd-2.4.6/srclib/apr-util-1.5.2 /tmp/httpd-2.4.6/srclib/apr-util
+tar -C /tmp/httpd-2.4.7/srclib -xzf /tmp/apr-util-1.5.2.tar.gz
+mv /tmp/httpd-2.4.7/srclib/apr-util-1.5.2 /tmp/httpd-2.4.7/srclib/apr-util
 
 tar -C /tmp -xzf /tmp/php-5.5.7.tar.gz
 tar -C /tmp -xzf /tmp/memcached-2.1.0.tgz
@@ -83,7 +83,7 @@ cd /tmp/pcre-8.32
 ./configure --prefix=/app/local --enable-jit --enable-utf8
 ${MAKE} && ${MAKE} install
 
-cd /tmp/httpd-2.4.6
+cd /tmp/httpd-2.4.7
 ./configure --prefix=/app/apache --enable-rewrite --enable-so --enable-deflate --enable-expires --enable-headers --enable-proxy-fcgi --with-mpm=event --with-included-apr --with-pcre=/app/local
 ${MAKE} && ${MAKE} install
 
@@ -130,7 +130,7 @@ ${MAKE} && ${MAKE} install
 # ./configure --prefix=/app/php --with-php-config=/app/php/bin/php-config --enable-static
 # ${MAKE} && ${MAKE} install
 
-echo '2.4.6' > /app/apache/VERSION
+echo '2.4.7' > /app/apache/VERSION
 echo '5.5.7' > /app/php/VERSION
 mkdir /tmp/build
 mkdir /tmp/build/local
