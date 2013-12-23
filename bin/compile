@@ -7,7 +7,7 @@ set -e
 # config
 APACHE_VERSION="2.4.6"
 APACHE_PATH="apache"
-PHP_VERSION="5.5.5"
+PHP_VERSION="5.5.7"
 PHP_PATH="php"
 BUILDPACK_VERSION="2.0-ace-1"
 OPT_BUILDPACK_URL="http://vulcan-acedude.herokuapp.com/output/38641e09-d84a-4e46-8cb6-bcec1d727175"
